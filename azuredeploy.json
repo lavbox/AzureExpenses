@@ -67,7 +67,7 @@
 				"description": "Tenant Id for the Azure subscription"
 			}
 		},
-		"Username": {
+		"UserId": {
 			"type": "string",
 			"defaultValue": "user@domain.com",
 			"minLength": 1,
@@ -218,7 +218,7 @@
 				"ClientID": "[parameters('ClientID')]",
 				"ApplicationKey": "[parameters('ApplicationKey')]",
 				"TenantID": "[parameters('TenantID')]",
-				"Username": "[parameters('Username')]",
+				"Username": "[parameters('UserId')]",
 				"StorageConnectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1)]",
 				"API-URL": "[concat('https://',parameters('siteName'),'.azurewebsites.net')]"
 			}
