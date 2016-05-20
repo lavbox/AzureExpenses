@@ -135,7 +135,7 @@ namespace AzureBilling.Web
         private static AuthenticationResult GetFreshAuthToken(string organizationId)
         {
             // Aquire Access Token to call Azure Resource Manager
-            string signedInUserUniqueName = ConfigurationManager.AppSettings["Username"];
+            string signedInUserUniqueName = ConfigurationManager.AppSettings["UserID"];
             ClientCredential credential = new ClientCredential(ConfigurationManager.AppSettings["ClientID"],
                 ConfigurationManager.AppSettings["ApplicationKey"]);
             AuthenticationContext authContext = new AuthenticationContext(
