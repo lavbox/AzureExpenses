@@ -108,7 +108,7 @@ namespace AzureUsageDataImport
             }
         }
 
-        private static void LogWebJobRunInfo(string runId, DateTime jobStartTime, DateTime jobEndTime)
+        private static void LogWebJobRunInfo(string message, DateTime jobStartTime, DateTime jobEndTime)
         {
             string monthStr = DateTime.UtcNow.Month < 10 ? "0" + DateTime.UtcNow.Month.ToString() : DateTime.UtcNow.Month.ToString();
             string yearStr = DateTime.UtcNow.Year.ToString();
@@ -118,8 +118,8 @@ namespace AzureUsageDataImport
             repo.Insert(new List<WebJobRunInfo>() {
                 new WebJobRunInfo {
                     PartitionKey = yearStr+"-"+monthStr,
-                    RowKey = runId,
-                    RunId = runId,
+                    RowKey = Guid.NewGuid().ToString(),
+                    RunId = message,
                     StartTimeUTC = jobStartTime,
                     EndTimeUTC = jobEndTime
                 }
