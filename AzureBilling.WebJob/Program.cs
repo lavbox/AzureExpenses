@@ -97,7 +97,7 @@ namespace AzureUsageDataImport
             // log message for yet to be configured subscriptions
             if(missingSubscriptionIds.Count > 0)
             {
-                string message = "USER ACTION REQUIRED FOR Subscription(s): " + string.Join(",", missingSubscriptionIds.ToArray()) + "\n Visit Dashboard, go to 'My Subscription' and fill up details.";
+                string message = "USER ACTION REQUIRED FOR Subscription(s): " + string.Join(",", missingSubscriptionIds.ToArray()) + " Visit Dashboard, go to 'My Subscription' and fill up details.";
                 LogWebJobRunInfo(message, jobStartTime, jobEndTime);
             }
 
