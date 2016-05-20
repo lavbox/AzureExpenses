@@ -75,7 +75,7 @@ namespace AzureBilling.Web.Controllers
             var repo = new EntityRepo<AzureUsageDetailsDaily>();
             var data = repo.Get(monthId, new List<Tuple<string, string>> { });
 
-            var aggregateUsage = data.OrderBy(x => x.UsageEndTime).Select(p => new DailyBillInfo { Amount = Math.Max(p.Amount,0.0), Name = p.MeterCategory, Date = p.UsageEndTime.ToString() });
+            var aggregateUsage = data.OrderBy(x => x.UsageEndTime).Select(p => new DailyBillInfo { Amount = Math.Max(p.Amount,0.0), Name = p.MeterCategory, Date = p.UsageEndTime.ToString("yyyy-MM-dd") });
             return GetDailyBillSeries(aggregateUsage);
         }
 
@@ -93,7 +93,7 @@ namespace AzureBilling.Web.Controllers
             var repo = new EntityRepo<AzureUsageDetailsDaily>();
             var data = repo.Get(monthId, new List<Tuple<string, string>> { });
 
-            var aggregateUsage = data.OrderBy(x => x.UsageEndTime).GroupBy(x=> new { x.SubscriptionName, x.UsageEndTime }). Select(p => new DailyBillInfo { Amount = Math.Max(p.Sum(y=>y.Amount),0.0), Name = p.Key.SubscriptionName, Date = p.Key.UsageEndTime.ToString() });
+            var aggregateUsage = data.OrderBy(x => x.UsageEndTime).GroupBy(x=> new { x.SubscriptionName, x.UsageEndTime }). Select(p => new DailyBillInfo { Amount = Math.Max(p.Sum(y=>y.Amount),0.0), Name = p.Key.SubscriptionName, Date = p.Key.UsageEndTime.ToString("yyyy-MM-dd") });
             return GetDailyBillSeries(aggregateUsage);
         }
 
